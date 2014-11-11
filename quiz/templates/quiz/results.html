@@ -1,0 +1,12 @@
+{% if question_list %}
+        <ul style="list-style-type:none">
+         {% for k,v in choice_.items %}
+            <li><h2>Q{{k.id}} . {{ k.question_text }}</h2></li> 
+	    <p>
+	    The Selected Answer - {{ v }}
+	    <br/>
+	    The Correct Answer  - {{k.answer_text}}
+	    </p>
+         {% endfor %}
+        </ul>
+{% endif %}

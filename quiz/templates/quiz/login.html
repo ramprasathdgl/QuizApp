@@ -1,0 +1,10 @@
+{% if error_message %}
+    <p><strong>{{ error_message }}</strong></p>
+{% endif %}
+
+<form action="{% url 'quiz:index' %}" method="post">
+{% csrf_token %}
+</br>
+Name : <input type="text" name="user_name"/> 
+<input type="submit"/>
+</form>
