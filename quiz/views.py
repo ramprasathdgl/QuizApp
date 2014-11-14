@@ -1,35 +1,37 @@
 from django.shortcuts import render, get_object_or_404
 from quiz.models import Question
+from quiz.forms import UserDetailForm
 from django.http import HttpResponse, HttpResponseRedirect
 
 questions = []
 
 
-def get_user_name(request):
-    return render(request, 'quiz/login.html')
+def get_user_detail(request):
+    if request.method == "POST":
+        form = UserDetailForm(request.POST)
 
-
-def set_user_name_4_session(request):
-    print request.method
-    if request.method == "GET":
-        return render(request, 'quiz/login.html')
+        if form.is_valid():
+            form.save(commit=True)
+            return index(request)
+        else:
+            print form.errors
     else:
-        print "Hi"
+        form = UserDetailForm()
+
+    return render(request, 'quiz/register.html', {'form': form})
 
 
 def index(request):
     global questions
-    user_name = request.POST["user_name"]
+    print request.POST.items()
+    user_name = request.POST["name"]
     if user_name != "":
         print "User_name", user_name
-        request.session['user_name'] = user_name
-    else:
-        context = {'error_message': "Please Enter Your Name"}
-        return render(request, 'quiz/login.html', context)
+        request.session['name'] = user_name
     questions = Question.objects.all()
     context = {'question_list': questions}
     print "session >>>>>>>>>>>>>>>>>>>>>>>>>>>>##\n"
-    print request.session['user_name']
+    print request.session['name']
     return render(request, 'quiz/index.html', context)
 
 
@@ -41,5 +43,5 @@ def next(request):
         context = {'question_list': questions, 'choice_': choice}
     print choice
     print "session >>>>>>>>>>>>>>>>>>>>>>>>>>>>##\n"
-    print request.session['user_name']
+    print request.session['name']
     return render(request, 'quiz/results.html', context)
