@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% load bootstrap3 %}
+
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{% bootstrap_messages %}
+
+<form id="userdetailform" action="{% url 'quiz:get_user_detail' %}" method="post" class="form-horizontal" role="form">
+{% csrf_token %}
+<div class="col-xs-12">
+	{% bootstrap_form form %}
+{% buttons %}
+<button type="submit" class="btn btn-primary btn-lg active">
+{% bootstrap_icon "star" %} Submit
+</button>
+{% endbuttons %}
+</div>
+</form>
+
+
+{% endblock %}
