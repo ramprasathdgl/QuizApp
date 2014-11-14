@@ -1,5 +1,5 @@
 from django.contrib import admin
-from quiz.models import Question, Choice
+from quiz.models import Question, Choice, UserDetail
 
 class ChoiceInline(admin.StackedInline):
     model = Choice
@@ -15,3 +15,4 @@ class QuestionAdmin(admin.ModelAdmin):
     inlines = [ChoiceInline]
 
 admin.site.register(Question, QuestionAdmin)
+admin.site.register(UserDetail)
