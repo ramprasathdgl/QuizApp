@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+<head>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js">
+	</script>
+	<script>
+	$(document).ready(function() {
+	    $('.table tr').click(function(event) {
+		        if (event.target.type !== 'radio') {
+					            $(':radio', this).trigger('click');
+								        }
+										    });
+											});
+	</script>
+
+</head>
+<form action={% url 'quiz:summa' %} method="post">
+{% csrf_token %}
+{% for form in FORM %}
+{% for field in form %}
+<h1 align=centre> 
+	{{ field.label }} 
+</h1>
+{% endfor %}
+</br>
+{% for field in form.title %}
+	<table class="table table-hover" >
+	<tr>
+		<td align=centre>
+			{{ field }}
+		</td>
+	</tr>
+	</table>
+{% endfor %}	
+</br>
+</br>
+{% endfor %}
+</form>
+{%endblock %}

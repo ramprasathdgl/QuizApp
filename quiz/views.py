@@ -1,9 +1,11 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, redirect
 from quiz.models import Question
-from quiz.forms import UserDetailForm
-from django.http import HttpResponse, HttpResponseRedirect
+from quiz.forms import UserDetailForm, QuestionForm
+# from django.http import HttpResponse
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 questions = []
+DEBUG = True
 
 
 def get_user_detail(request):
@@ -12,7 +14,7 @@ def get_user_detail(request):
 
         if form.is_valid():
             form.save(commit=True)
-            return index(request)
+            return redirect("/quiz/quiz/")
         else:
             print form.errors
     else:
@@ -21,27 +23,56 @@ def get_user_detail(request):
     return render(request, 'quiz/register.html', {'form': form})
 
 
-def index(request):
+def quiz(request):
     global questions
-    print request.POST.items()
-    user_name = request.POST["name"]
-    if user_name != "":
-        print "User_name", user_name
-        request.session['name'] = user_name
     questions = Question.objects.all()
-    context = {'question_list': questions}
-    print "session >>>>>>>>>>>>>>>>>>>>>>>>>>>>##\n"
-    print request.session['name']
-    return render(request, 'quiz/index.html', context)
+    FORM = []
+    if request.method == "POST":
+        choice = request.POST.get("title")
+        if choice:
+            k, v = eval(choice)
+            request.session[k] = v
+        if DEBUG:
+            print "request.POST==================>", request.POST
+            print "request.session==================>",\
+                request.session.get("page")
+        page = request.session.get("page")
+        if page <= request.session.get("num_pages"):
+            url_ = "/quiz/quiz/?page={0}".format(page)
+        else:
+            # return HttpResponse("Reached the Final Page")
+            url_ = "/quiz/result/"
+        return redirect(url_)
+    else:
+        for q in questions:
+            form = QuestionForm(q)
+            FORM.append(form)
+        paginator = Paginator(FORM, 1)
+        print "request.GET==================>", request.GET
+        page = request.GET.get("page")
+        print "request.pageno==================>", paginator.num_pages
+        request.session["num_pages"] = int(paginator.num_pages)
+        try:
+            if page:
+                pages = int(page) + 1
+                request.session["page"] = pages
+            FORM = paginator.page(page)
+        except PageNotAnInteger:
+            FORM = paginator.page(1)
+            request.session["page"] = 2
+        except EmptyPage:
+            FORM = paginator.page(
+                paginator.num_pages)
+
+        return render(request, 'quiz/questions.html', {'FORM': FORM})
 
 
-def next(request):
+def result(request):
     choice = {}
+    print request.session.items()
     for i in questions:
         key = str(i.id)
-        choice[i] = request.POST.get(key, False)
-        context = {'question_list': questions, 'choice_': choice}
-    print choice
-    print "session >>>>>>>>>>>>>>>>>>>>>>>>>>>>##\n"
-    print request.session['name']
+        choice[i] = request.session.get(key, False)
+    context = {'question_list': questions, 'choice_': choice}
+    request.session.flush()
     return render(request, 'quiz/results.html', context)
