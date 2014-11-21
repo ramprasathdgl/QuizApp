@@ -1,3 +1,4 @@
+from __future__ import division
 from django.shortcuts import render, redirect
 from quiz.models import Question
 from quiz.forms import UserDetailForm, QuestionForm
@@ -73,6 +74,16 @@ def result(request):
     for i in questions:
         key = str(i.id)
         choice[i] = request.session.get(key, False)
-    context = {'question_list': questions, 'choice_': choice}
+    quest_answered = len([v for v in choice.values() if v])
+    correct_answer_count = 0
+    for k, v in choice.items():
+        if v:
+            if k.answer_text.strip() == str(v).strip():
+                correct_answer_count += 1
+    percentage = (correct_answer_count / 14)*100
+    context = {'question_list': questions, 'choice_': choice,
+               "quest_answered": quest_answered,
+               'correct_answer_count': correct_answer_count,
+               'percentage': percentage}
     request.session.flush()
     return render(request, 'quiz/results.html', context)
