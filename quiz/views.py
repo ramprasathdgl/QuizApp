@@ -32,10 +32,10 @@ def quiz(request):
         choice = request.POST.get("title")
         if choice:
             k, v = eval(choice)
-            request.session[k] = v
+            request.session[str(k)] = v
         if DEBUG:
-            print "request.POST==================>", request.POST
-            print "request.session==================>",\
+            print "request.session==================>", request.session.items()
+            print "request.session[page]==================>",\
                 request.session.get("page")
         page = request.session.get("page")
         if page <= request.session.get("num_pages"):
