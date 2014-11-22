@@ -1,18 +1,43 @@
 {% extends 'base.html' %}
 {% block content %}
 {% if question_list %}
-		<h1> No of Questions Answered : {{ quest_answered }} </h1>
-		<h1> No of Correct Questions : {{ correct_answer_count  }} </h1>
-		<h1> Your Score : {{ percentage  }}% </h1>
-        <ul style="list-style-type:none">
-         {% for k,v in choice_.items %}
-            <li><h2>Q{{k.id}} . {{ k.question_text }}</h2></li> 
-	    <p>
-	    The Selected Answer - {{ v }}
-	    <br/>
-	    The Correct Answer  - {{k.answer_text}}
-	    </p>
-         {% endfor %}
-        </ul>
+<div class="container">
+    <h1> Much Awaited Results  !!! </h1>
+        <table class="table table-hover table-bordered">
+            <tbody>
+                {% for k,v in result_dict.items %}
+                    <tr class="info">
+                        <td>
+                            <h6> <strong> {{ forloop.counter }} </strong></h6>
+                        </td>
+                        <td >
+                            <h4>
+                                <p class="text-uppercase">
+                                    <strong> {{ k }} </strong>
+                                </p>
+                            </h4>
+                        </td>
+                        <td>
+                            <h5><strong> {{ v }} </strong></h5>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table> 
+</div>
+
+<!--
+<ul style="list-style-type:none">
+{% for k,v in choice_.items %}
+ <h2>Q{{forloop.counter}} . {{ k.question_text }}</h2>
+<p>
+ The Selected Answer - {{ v }}
+<br/>
+The Correct Answer  - {{k.answer_text}}
+</p>
+{% endfor %}
+</ul>
+-->
+
 {% endif %}
 {% endblock %}

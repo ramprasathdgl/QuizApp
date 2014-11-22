@@ -81,9 +81,11 @@ def result(request):
             if k.answer_text.strip() == str(v).strip():
                 correct_answer_count += 1
     percentage = (correct_answer_count / 14)*100
+    result_dict = {'No of questions answered': quest_answered,
+                   'No of answers you got right': correct_answer_count,
+                   'Your Score': percentage}
     context = {'question_list': questions, 'choice_': choice,
-               "quest_answered": quest_answered,
-               'correct_answer_count': correct_answer_count,
-               'percentage': percentage}
+               'result_dict': result_dict,
+               }
     request.session.flush()
     return render(request, 'quiz/results.html', context)
