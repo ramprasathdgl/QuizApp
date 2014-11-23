@@ -1,4 +1,7 @@
 *.pyc
 .ropeproject
 *.swp
+*.swo
+migrations
+
 
