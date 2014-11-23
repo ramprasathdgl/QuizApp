@@ -15,6 +15,9 @@ def get_user_detail(request):
 
         if form.is_valid():
             form.save(commit=True)
+            # Save the name in session in the name so it can be used in
+            # results.html
+            request.session["name"] = request.POST["name"]
             return redirect("/quiz/quiz/")
         else:
             print form.errors
@@ -35,8 +38,8 @@ def quiz(request):
             request.session[str(k)] = v
         if DEBUG:
             print "request.session==================>", request.session.items()
-            print "request.session[page]==================>",\
-                request.session.get("page")
+            print "request.session[name]==================>",\
+                request.session.get("name")
         page = request.session.get("page")
         if page <= request.session.get("num_pages"):
             url_ = "/quiz/quiz/?page={0}".format(page)
@@ -83,9 +86,11 @@ def result(request):
     percentage = (correct_answer_count / 14)*100
     result_dict = {'No of questions answered': quest_answered,
                    'No of answers you got right': correct_answer_count,
-                   'Your Score': percentage}
-    context = {'question_list': questions, 'choice_': choice,
+                   'Percenatage': percentage}
+    context = {'question_list': questions,
+               'choice_': choice,
                'result_dict': result_dict,
+               'name': request.session.get("name"),
                }
     request.session.flush()
     return render(request, 'quiz/results.html', context)
