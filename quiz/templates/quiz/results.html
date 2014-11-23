@@ -1,8 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
 {% if question_list %}
-<div class="container">
-    <h1> Much Awaited Results  !!! </h1>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h1 class="panel-title">Much Awaited Results  !!! </h1>
+    </div>
+    <div class="panel-body">
         <table class="table table-hover table-bordered">
             <tbody>
                 {% for k,v in result_dict.items %}
@@ -24,20 +27,42 @@
                 {% endfor %}
             </tbody>
         </table> 
+    </div>
 </div>
+</br>
+</br>
+</br>
 
-<!--
-<ul style="list-style-type:none">
-{% for k,v in choice_.items %}
- <h2>Q{{forloop.counter}} . {{ k.question_text }}</h2>
-<p>
- The Selected Answer - {{ v }}
-<br/>
-The Correct Answer  - {{k.answer_text}}
-</p>
-{% endfor %}
-</ul>
--->
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h1 class="panel-title">Detailed Report </h1>
+    </div>
+    <div class="panel-body">
+        {% for k,v in choice_.items %}
+            <table class="table table-striped table-bordered">
+                <thead style="background-color: black">
+                    <tr>
+                        <th>
+                            <font color="white">Q{{forloop.counter}} . {{ k.question_text }} </font>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <strong> Selected Answer - {{ v }} </strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong> Correct Answer  - {{k.answer_text}} </strong>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        {% endfor %}
+    </div>
+</div>
 
 {% endif %}
 {% endblock %}
