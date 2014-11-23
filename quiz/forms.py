@@ -14,10 +14,16 @@ class UserDetailForm(ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(UserDetailForm, self).__init__(*args,  **kwargs)
-        self.fields['name'].widget.attrs['class'] = 'form-control'
-        self.fields['sex'].widget.attrs['class'] = 'form-control'
-        self.fields['email_id'].widget.attrs['class'] = 'form-control'
-        self.fields['birth_date'].widget.attrs['class'] = 'form-control'
+        self.fields['name'].widget.attrs.update({'class': 'form-control',
+                                                 'placeholder': 'Name'})
+        self.fields['sex'].widget.attrs.update({'class': 'form-control',
+                                                'placeholder': ''})
+        self.fields['email_id'].widget.attrs.update({'class': 'form-control',
+                                                     'placeholder':
+                                                     'someone@gmail.com'})
+        self.fields['birth_date'].widget.attrs.update({'class': 'form-control',
+                                                       'placeholder':
+                                                       'YYYY-MM-DD'})
 
 
 class QuestionForm(forms.Form):
