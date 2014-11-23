@@ -1,24 +1,22 @@
 {% extends 'base.html' %}
 {% block content %}
 
-{% load bootstrap3 %}
+<h1> Registration Form </h1>
 
-{% bootstrap_css %}
-{% bootstrap_javascript %}
-
-{% bootstrap_messages %}
+</br>
+</br>
 
 <form id="userdetailform" action="{% url 'quiz:get_user_detail' %}" method="post" class="form-horizontal" role="form">
-{% csrf_token %}
-<div class="col-xs-12">
-	{% bootstrap_form form %}
-{% buttons %}
-<button type="submit" class="btn btn-primary btn-lg active">
-{% bootstrap_icon "star" %} Submit
-</button>
-{% endbuttons %}
-</div>
+  {% csrf_token %}
+  <div class="col-xs-12">
+    {% for field in form %}
+      <div class="form-group">
+        {{field.label_tag }}
+        {{ field }}
+      </div>
+    {%endfor %}
+  </div>
+<button type="submit" class="btn btn-primary btn-lg active"> Submit </button>
 </form>
-
 
 {% endblock %}

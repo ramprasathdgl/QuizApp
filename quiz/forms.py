@@ -12,6 +12,13 @@ class UserDetailForm(ModelForm):
         model = UserDetail
         fields = ["name", "sex", "email_id", "birth_date"]
 
+    def __init__(self, *args, **kwargs):
+        super(UserDetailForm, self).__init__(*args,  **kwargs)
+        self.fields['name'].widget.attrs['class'] = 'form-control'
+        self.fields['sex'].widget.attrs['class'] = 'form-control'
+        self.fields['email_id'].widget.attrs['class'] = 'form-control'
+        self.fields['birth_date'].widget.attrs['class'] = 'form-control'
+
 
 class QuestionForm(forms.Form):
     title = forms.ChoiceField(widget=forms.RadioSelect())
