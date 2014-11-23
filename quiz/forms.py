@@ -10,7 +10,7 @@ class UserDetailForm(ModelForm):
 
     class Meta:
         model = UserDetail
-        fields = ["title", "name",  "email_id", "birth_date"]
+        fields = ["name", "sex", "email_id", "birth_date"]
 
 
 class QuestionForm(forms.Form):

@@ -1,9 +1,9 @@
 from django.db import models
 
 TITLE_CHOICES = (
-    ('MR', 'Mr.'),
-    ('MRS', 'Mrs.'),
-    ('MS', 'Ms.'),
+    ('MR', 'Male'),
+    ('MRS', 'Female'),
+    ('MS', 'Other'),
 )
 
 
@@ -24,7 +24,7 @@ class Choice(models.Model):
 
 
 class UserDetail(models.Model):
-    title = models.CharField(max_length=3, choices=TITLE_CHOICES)
+    sex = models.CharField(max_length=10, choices=TITLE_CHOICES)
     name = models.CharField(max_length=100)
     email_id = models.EmailField(max_length=70, unique=True)
     birth_date = models.DateField(blank=True, null=True)
