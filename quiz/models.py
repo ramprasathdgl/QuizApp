@@ -31,3 +31,24 @@ class UserDetail(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class ResultPercentage(models.Model):
+    # 0% - 25%
+    firstquarter = models.IntegerField(default=0)
+    # 25% - 50%
+    secondquarter = models.IntegerField(default=0)
+    # 50% - 75%
+    thirdquarter = models.IntegerField(default=0)
+    # 75% - 100%
+    fourthquarter = models.IntegerField(default=0)
+
+    def updatepercentage(self, percent):
+        if percent > 0 and percent <= 25.0:
+            self.firstquarter += 1
+        elif percent <= 50 and percent > 25:
+            self.secondquarter += 1
+        elif percent > 50 and percent <= 75:
+            self.thirdquarter += 1
+        elif percent > 75 and percent <= 100:
+            self.fourthquarter += 1
