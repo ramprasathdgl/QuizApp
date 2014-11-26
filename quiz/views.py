@@ -1,9 +1,11 @@
 from __future__ import division
 from django.shortcuts import render, redirect
-from quiz.models import Question
+from quiz.models import Question, ResultPercentage
 from quiz.forms import UserDetailForm, QuestionForm
-# from django.http import HttpResponse
+from django.http import HttpResponse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
+from matplotlib.figure import Figure
 
 questions = []
 DEBUG = True
@@ -83,7 +85,15 @@ def result(request):
         if v:
             if k.answer_text.strip() == str(v).strip():
                 correct_answer_count += 1
-    percentage = (correct_answer_count / 14)*100
+    percentage_ = (correct_answer_count / 14)*100
+    # Convert the floating point with two decimal points
+    percentage = float("{0:.2f}".format(percentage_))
+    tmp = ResultPercentage.objects.get(pk=1)
+    # Custom model method which checks for the range of percentages
+    # and saves the values accordingly
+    tmp.updatepercentage(percentage)
+    # Save the database
+    tmp.save()
     result_dict = {'No of questions answered': quest_answered,
                    'No of answers you got right': correct_answer_count,
                    'Percenatage': percentage}
@@ -92,5 +102,27 @@ def result(request):
                'result_dict': result_dict,
                'name': request.session.get("name"),
                }
+    # Clear the current sessions
     request.session.flush()
     return render(request, 'quiz/results.html', context)
+
+
+def draw_graph(request):
+    tmp = ResultPercentage.objects.get(pk=1)
+    # Fetch data from the database and pass it to pie
+    data = [tmp.firstquarter, tmp.secondquarter, tmp.thirdquarter,
+            tmp.fourthquarter]
+    explode = (0.05, 0.05, 0.05, 0)
+
+    fig = Figure(facecolor='white', figsize=(6, 6), frameon=False, dpi=300)
+    ax = fig.add_subplot(111, aspect='equal')
+    ax.pie(data,
+           explode=explode,
+           shadow=False,
+           labels=['0% -25%', '25%-50%', '50%-75%', '75%-100%'],
+           colors=['b', 'r', 'g'],
+           )
+    canvas = FigureCanvas(fig)
+    response = HttpResponse(content_type="image/png")
+    canvas.print_figure(response, dpi=300)
+    return response

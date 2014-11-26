@@ -7,4 +7,6 @@ urlpatterns = patterns('',
                            name='get_user_detail'),
                        url(r'^quiz/$', views.quiz, name='quiz'),
                        url(r'^result/$', views.result, name='result'),
+                       url(r'^charts/simple/$', views.draw_graph,
+                           name='draw_graph'),
                        )
