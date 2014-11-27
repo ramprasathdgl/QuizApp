@@ -18,20 +18,22 @@
 {% csrf_token %}
 {% for form in FORM %}
 {% for field in form %}
-<h1 align=centre> 
-	{{ field.label }} 
+<h1 align=left> 
+    {{ field.label }} 
 </h1>
 {% endfor %}
 </br>
-<table class="table table-hover table-bordered" >
-  {% for field in form.title %}
-    <tr>
-      <td align=centre>
-         {{ field }}
-      </td>
-    </tr>
-  {% endfor %}	
-</table>
+<div class="panel panel-default">
+  <table class="table table-hover" >
+    {% for field in form.title %}
+      <tr>
+        <td align=left>
+           {{ field }}
+        </td>
+      </tr>
+    {% endfor %}	
+  </table>
+</div>
 </br>
 </br>
 {% endfor %}
