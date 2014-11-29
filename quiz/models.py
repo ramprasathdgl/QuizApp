@@ -42,6 +42,7 @@ class ResultPercentage(models.Model):
     thirdquarter = models.IntegerField(default=0)
     # 75% - 100%
     fourthquarter = models.IntegerField(default=0)
+    fifthquarter = models.IntegerField(default=0)
 
     def updatepercentage(self, percent):
         if percent > 0 and percent <= 25.0:

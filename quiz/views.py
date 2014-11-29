@@ -88,7 +88,7 @@ def result(request):
     percentage_ = (correct_answer_count / 14)*100
     # Convert the floating point with two decimal points
     percentage = float("{0:.2f}".format(percentage_))
-    tmp = ResultPercentage.objects.get(pk=1)
+    tmp = ResultPercentage.objects.all()[0]
     # Custom model method which checks for the range of percentages
     # and saves the values accordingly
     tmp.updatepercentage(percentage)
@@ -108,11 +108,11 @@ def result(request):
 
 
 def draw_graph(request):
-    tmp = ResultPercentage.objects.get(pk=1)
+    tmp = ResultPercentage.objects.all()[0]
     # Fetch data from the database and pass it to pie
     data = [tmp.firstquarter, tmp.secondquarter, tmp.thirdquarter,
             tmp.fourthquarter]
-    explode = (0.05, 0.05, 0.05, 0)
+    explode = (0.05, 0.05, 0.05, 0.05)
 
     fig = Figure(facecolor='white', figsize=(6, 6), frameon=False, dpi=300)
     ax = fig.add_subplot(111, aspect='equal')
