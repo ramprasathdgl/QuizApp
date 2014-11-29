@@ -11,6 +11,7 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^quiz/', include('quiz.urls', namespace="quiz")),
+    url(r'', include('homepage.urls', namespace="homepage")),
 )
 
 if settings.DEBUG:
