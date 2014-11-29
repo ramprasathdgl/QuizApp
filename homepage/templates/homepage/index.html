@@ -16,11 +16,12 @@
     <link href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.0/yeti/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-	<link href={% static "homepage/css/dashboard.css" %} rel="stylesheet">
+    <link href={% static "homepage/css/dashboard.css" %} rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-	<script src={% static "homepage/js/ie-emulation-modes-warning.js" %}></script>
+    <script src={% static "homepage/js/ie-emulation-modes-warning.js" %}></script>
+    <script src="http://imsky.github.com/holder/holder.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -40,10 +41,10 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Project name</a>
+          <a class="navbar-brand" href="#">CDelta</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
+          <ul class="nav navbar-nav">
             <li><a href="#">Dashboard</a></li>
             <li><a href="#">Settings</a></li>
             <li><a href="#">Profile</a></li>
@@ -61,31 +62,26 @@
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
             <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
-            <li><a href="#">Reports</a></li>
+            <li><a href="quiz/quiz/">Quiz</a></li>
             <li><a href="#">Analytics</a></li>
             <li><a href="#">Export</a></li>
           </ul>
-          <ul class="nav nav-sidebar">
-            <li><a href="">Nav item</a></li>
-            <li><a href="">Nav item again</a></li>
-            <li><a href="">One more nav</a></li>
-            <li><a href="">Another nav item</a></li>
-            <li><a href="">More navigation</a></li>
           </ul>
           <ul class="nav nav-sidebar">
-            <li><a href="">Nav item again</a></li>
-            <li><a href="">One more nav</a></li>
+            <li class="active"><a href="#">Resources<span class="sr-only">(current)</span></a></li>
+	    <li><a href="http://www.brianmcmahonlaw.com/CM/Client-Bulletin/Client-Bulletin7.html">Why We Don't Want CBM?</a></li>
+            <li><a href="http://www.dangersoffracking.com/">What realy happens below?</a></li>
             <li><a href="">Another nav item</a></li>
           </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <h1 class="page-header">Dashboard</h1>
+          <h1 class="page-header">Contest</h1>
 
           <div class="row placeholders">
             <div class="col-xs-6 col-sm-3 placeholder">
-              <img data-src="holder.js/200x200/auto/sky" class="img-responsive" alt="Generic placeholder thumbnail">
-              <h4>Label</h4>
-              <span class="text-muted">Something else</span>
+	      <img src='http://upload.wikimedia.org/wikipedia/commons/e/e6/Quake_Q_logo.png' alt='Thumbnail' class="img-thumbnail img-responsive" height="200" width="200" />
+              <h4>Quiz</h4>
+              <span class="text-muted">Test Yourself !</span>
             </div>
             <div class="col-xs-6 col-sm-3 placeholder">
               <img data-src="holder.js/200x200/auto/vine" class="img-responsive" alt="Generic placeholder thumbnail">
@@ -104,14 +100,14 @@
             </div>
           </div>
 
-          <h2 class="sub-header">Section title</h2>
+          <h2 class="sub-header">Registrants</h2>
           <div class="table-responsive">
             <table class="table table-striped">
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>Header</th>
-                  <th>Header</th>
+                  <th>Quiz</th>
+                  <th>Essay</th>
                   <th>Header</th>
                   <th>Header</th>
                 </tr>
