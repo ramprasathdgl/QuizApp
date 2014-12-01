@@ -21,7 +21,6 @@ SECRET_KEY = 'ze7-0vjyzs%ct+@w92bji@b!ul50r9e)&^qvt)%v7_)fs7-u0q'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
 TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
@@ -95,8 +94,9 @@ USE_TZ = True
 #                          "static", "media")
 
 # Parse database configuration from $DATABASE_URL
-import dj_database_url
-DATABASES['default'] = dj_database_url.config()
+if not DEBUG:
+    import dj_database_url
+    DATABASES['default'] = dj_database_url.config()
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
