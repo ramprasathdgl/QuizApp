@@ -77,7 +77,8 @@
               <h1 class="panel-title text-uppercase"> WHat others are doing </h1>
           </div>
           <div class="panel-body">
-             <img src="http://127.0.0.1:8000/quiz/charts/simple/" alt="Results Pie Chart" width="400" height="600">
+             <!--img src="http://127.0.0.1:8000/quiz/charts/simple/" alt="Results Pie Chart" width="400" height="600" -->
+             <img src="{% url 'quiz:draw_graph' %}"  alt="Results Pie Chart" width="400" height="600">
           </div>
       </div>
     </div>
