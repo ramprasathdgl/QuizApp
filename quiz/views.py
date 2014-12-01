@@ -69,7 +69,6 @@ def quiz(request):
         except EmptyPage:
             FORM = paginator.page(
                 paginator.num_pages)
-
         return render(request, 'quiz/questions.html', {'FORM': FORM})
 
 
@@ -96,7 +95,7 @@ def result(request):
     tmp.save()
     result_dict = {'No of questions answered': quest_answered,
                    'No of answers you got right': correct_answer_count,
-                   'Percenatage': percentage}
+                   'Percentage': percentage}
     context = {'question_list': questions,
                'choice_': choice,
                'result_dict': result_dict,
