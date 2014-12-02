@@ -3,10 +3,10 @@
 {% if question_list %}
 <div class="container-fluid">
   <div class="row">
-
    <!-- Detailed report -->
-    <div class="col-md-4">
-      <div class="panel panel-primary">
+    <div class="col-sm-3 col-md-2 col-md-offset-1 sidebar">
+    <!--div class="col-md-4" -->
+      <div class="panel panel-primary nav nav-sidebar">
           <div class="panel-heading">
               <h1 class="panel-title">Detailed Report </h1>
           </div>
@@ -39,7 +39,8 @@
     </div>
 
     <!-- Percentage Part -->
-    <div class="col-md-8">
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main ">
+    <!--div class="col-md-8 col-md-offset-5 main" -->
       <div class="panel panel-primary">
           <div class="panel-heading">
               <h1 class="panel-title text-uppercase"> {{ name }}, Your Score is!!! </h1>
@@ -68,10 +69,10 @@
               </table> 
           </div>
       </div>
-    </div>
+    <!--/div-->
 
     <!-- Graph Part -->
-    <div class="col-md-8">
+    <!--div class="col-md-8"-->
       <div class="panel panel-primary">
           <div class="panel-heading">
               <h1 class="panel-title text-uppercase"> WHat others are doing </h1>
