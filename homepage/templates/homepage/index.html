@@ -21,7 +21,6 @@
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src={% static "homepage/js/ie-emulation-modes-warning.js" %}></script>
-    <script src="http://imsky.github.com/holder/holder.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -62,7 +61,7 @@
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
             <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
-            <li><a href="quiz/quiz/">Quiz</a></li>
+	    <li><a href="{% url 'quiz:quiz' %}">Quiz</a></li>
             <li><a href="#">Analytics</a></li>
             <li><a href="#">Export</a></li>
           </ul>
@@ -79,7 +78,9 @@
 
           <div class="row placeholders">
             <div class="col-xs-6 col-sm-3 placeholder">
-	      <img src='http://upload.wikimedia.org/wikipedia/commons/e/e6/Quake_Q_logo.png' alt='Thumbnail' class="img-thumbnail img-responsive" height="200" width="200" />
+	      <a href="{% url 'quiz:quiz' %}">
+	         <img src={% static "homepage/images/quiz_logo.jpg" %} alt='Thumbnail' class="img-thumbnail img-responsive" height="200" width="200" />
+	      </a>
               <h4>Quiz</h4>
               <span class="text-muted">Test Yourself !</span>
             </div>
