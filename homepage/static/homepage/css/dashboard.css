@@ -26,6 +26,9 @@ body {
   border: 0;
 }
 
+.navbar-nav{
+   padding-left:105px;
+}
 /*
  * Sidebar
  */
