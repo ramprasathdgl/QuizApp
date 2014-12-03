@@ -8,7 +8,7 @@
     <!--div class="col-md-4" -->
       <div class="panel panel-primary nav nav-sidebar">
           <div class="panel-heading">
-              <h1 class="panel-title">Detailed Report </h1>
+            <h1 class="panel-title"><i class="fa fa-info-circle fa-lg"></i> Detailed Report </h1>
           </div>
           <div class="panel-body">
               {% for k,v in choice_.items %}
@@ -34,16 +34,16 @@
                       </tbody>
                   </table>
               {% endfor %}
-          </div>
-      </div>
-    </div>
+          </div><!--/.panel-body-->
+      </div><!--/.panel .panel-primary .nav .nav-sidebar-->
+    </div><!--/.sidebar-->
 
     <!-- Percentage Part -->
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main ">
     <!--div class="col-md-8 col-md-offset-5 main" -->
       <div class="panel panel-primary">
           <div class="panel-heading">
-              <h1 class="panel-title text-uppercase"> {{ name }}, Your Score is!!! </h1>
+            <h1 class="panel-title text-uppercase"> <i class="fa fa-rocket fa-2x"></i> {{ name }}, Your Score is!!! </h1>
           </div>
           <div class="panel-body">
               <table class="table table-hover table-bordered">
@@ -67,25 +67,22 @@
                       {% endfor %}
                   </tbody>
               </table> 
-          </div>
-      </div>
+        </div><!--/.panel-body-->
+      </div><!--/.panel .panel-primary-->
     <!--/div-->
-
     <!-- Graph Part -->
     <!--div class="col-md-8"-->
       <div class="panel panel-primary">
           <div class="panel-heading">
-              <h1 class="panel-title text-uppercase"> WHat others are doing </h1>
+            <h1 class="panel-title text-uppercase"> <i class="fa fa-pie-chart fa-2x"></i>  where do you stand</h1>
           </div>
-          <div class="panel-body">
-             <!--img src="http://127.0.0.1:8000/quiz/charts/simple/" alt="Results Pie Chart" width="400" height="600" -->
-             <img src="{% url 'quiz:draw_graph' %}"  alt="Results Pie Chart" width="400" height="600">
+          <div class="panel-body" >
+             <img src="{% url 'quiz:draw_graph' %}"  class="img-responsive img-circle center-block" alt="Results Pie Chart" width="400" height="400">
           </div>
-      </div>
-    </div>
-
-  </div>
-</div>
+      </div><!--/.panel-primary-->
+    </div><!--/.main-->
+  </div><!--/.row-->
+</div><!--/.container-fluid-->
 
 {% endif %}
 {% endblock %}

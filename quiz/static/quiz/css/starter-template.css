@@ -7,6 +7,10 @@ body {
   text-align: center;
 }
 
+.panel{
+ background- color: snow;
+}
+
 
 /*
  * Base structure
@@ -24,6 +28,9 @@ body {
  */
 .navbar-fixed-top {
   border: 0;
+}
+
+.panel-title{
 }
 
 /*
@@ -45,7 +52,7 @@ body {
     padding: 20px;
     overflow-x: hidden;
     overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
-    background-color: #fff;
+    background-color: snow;
     border-right: 1px solid #fff;
   }
 }
@@ -106,4 +113,8 @@ body {
   display: inline-block;
   border: 0;
   border-radius: 50%;
+}
+
+img {
+ margin:auto;
 }
